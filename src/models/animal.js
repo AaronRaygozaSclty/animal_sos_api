@@ -6,9 +6,9 @@ class AnimalModel {
         if (!animal) {
             throw new Error("No animal data provided.");
         }
-        const callMascotas = dbClient.db.collection('animal');
+        const callAnimal = dbClient.db.collection('animal');
         try {
-            const result = await callMascotas.insertOne(animal);
+            const result = await callAnimal.insertOne(animal);
             console.log('Animal successfully inserted:', result);
             return result;
         } catch (error) {
@@ -18,9 +18,9 @@ class AnimalModel {
     }
 
     async getAll() {
-        const callMascotas = dbClient.db.collection('animal');
+        const callAnimal = dbClient.db.collection('animal');
         try {
-            const result = await callMascotas.find().toArray();
+            const result = await callAnimal.find().toArray();
             return result;
         } catch (error) {
             console.error("Error fetching all animals:", error);
@@ -32,9 +32,9 @@ class AnimalModel {
         if (!id) {
             throw new Error("Animal ID is required.");
         }
-        const callMascotas = dbClient.db.collection('animal');
+        const callAnimal = dbClient.db.collection('animal');
         try {
-            const result = await callMascotas.findOne({ _id: new ObjectId(id) });
+            const result = await callAnimal.findOne({ _id: new ObjectId(id) });
             return result;
         } catch (error) {
             console.error("Error fetching animal:", error);
@@ -46,9 +46,9 @@ class AnimalModel {
         if (!id || !animal) {
             throw new Error("Animal ID and update data are required.");
         }
-        const callMascotas = dbClient.db.collection('animal');
+        const callAnimal = dbClient.db.collection('animal');
         try {
-            const result = await callMascotas.updateOne(
+            const result = await callAnimal.updateOne(
                 { _id: new ObjectId(id) },
                 { $set: animal }
             );
@@ -63,9 +63,9 @@ class AnimalModel {
         if (!id) {
             throw new Error("Animal ID is required for deletion.");
         }
-        const callMascotas = dbClient.db.collection('animal');
+        const callAnimal = dbClient.db.collection('animal');
         try {
-            const result = await callMascotas.deleteOne({ _id: new ObjectId(id) });
+            const result = await callAnimal.deleteOne({ _id: new ObjectId(id) });
             return result;
         } catch (error) {
             console.error("Error deleting animal:", error);
